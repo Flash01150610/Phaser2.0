@@ -1,30 +1,15 @@
-<html></html>
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Phaser Game</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Running Game</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: lightblue;
+            background: light blue;
         }
         #player {
             width: 50px;
@@ -33,7 +18,7 @@
             position: absolute;
             bottom: 100px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%);
         }
         .car {
             width: 50px;
@@ -53,9 +38,8 @@
 
 <script>
     const player = document.getElementById('player');
-    const music = document.getElementById('backgroundMusic');
-    let playerPosition = window.innerWidth / 2;
-
+    const music = document.getElementById('background music);
+    
     // Start the music
     music.play();
 
@@ -64,46 +48,78 @@
         car.className = 'car';
         car.style.left = Math.random() * (window.innerWidth - 50) + 'px';
         document.body.appendChild(car);
-        moveCar(car);
-    }
 
-    function mover(car) {
-        const speed = 2 + Math.random() * 3; // Random speed
+        // Move the car down
+        let car position = 0;
         const interval = setInterval(() => {
-            car.style.bottom = (parseInt(car.style.bottom) || 0) + speed + 'px';
-            // Check for collision
-            if (parseInt(car.style.bottom) > window.innerHeight) {
+            car position += 2; // Adjust speed of the car here
+            car.style.bottom = car position + 'px';
+
+            // Remove car if it goes off screen
+            if (car position > window.innerHeight) {
                 clear interval(interval);
                 car.remove();
             }
-            if (collisionDetected(player, car)) {
-                alert('Game Over!');
-                location.reload(); // Restart the game
-            }
-        }, 20);
+        }, 100); // Move every 100ms
     }
+javascript
+let playerPosition = window.innerWidth / 2 - 25; // Initialize player's starting position
+const player = document.getElementById('player'); // Assuming you have an element with id 'player'
+player.style.left = player position + 'px';
 
-    function collisionDetected
-    (player, car) {
-        const playerRect = player.getBoundingClientRect();
-        const carRect = car.getBoundingClientRect();
-        return !(
-            playerRect.top > carRect.bottom ||
-            playerRect.bottom < carRect.top ||
-            playerRect.right < carRect.left ||
-            playerRect.left > carRect.right
-        );
-    }
+// Function to create a new car
+function createCar() {
+    const car = document.createElement('div');
+    car.className = 'car';
+    car.style.left = Math.random() * (window.innerWidth - 50) + 'px'; // Random horizontal position
+    car.style.bottom = '0px'; // Start at the bottom of the screen
+    document. body.appendChild(car);
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft' && playerPosition > 0) {
-            playerPosition -= 15;
-        } else if (event.key === 'ArrowRight' && playerPosition < window.innerWidth - 50) {
-            playerPosition += 15;
+    mover(car); // Start moving the car
+}
+
+// Function to move the car up the screen
+function mover(car) {
+    const speed = 2 + Math.random() * 3; // Random speed for the car
+    const interval = setInterval(() => {
+        car.style.bottom = (parseInt(car.style.bottom) || 0) + speed + 'px';
+
+        // Check for collision
+        if (parseInt(car.style.bottom) > window.innerHeight) {
+            clear interval (interval); // Clear interval when the car goes off the screen
+            car.remove();
+        } 
+        
+        if (collisionDetected(player, car)) {
+            alert('Game Over!'); // Alert if there is a collision
+            location.reload(); // Reload the game
         }
-        player.style.left = playerPosition + 'px';
-    });
-    setInterval(createCar, 1000); // Create a new car every second
-</script>
-</body>body>
-</html>
+    }, 20);
+}
+
+// Function to detect collisions between player and car
+function collision detected(player, car) {
+    const playerRect = player.getBoundingClientRect();
+    const carRect = car.getBoundingClientRect();
+    return !(
+        playerRect.top > carRect.bottom ||
+        playerRect.bottom < carRect.top ||
+        playerRect.right < carRect.left ||
+        playerRect.left > carRect.right
+    );
+}
+
+// Event listener for keyboard controls
+document.addEventListener('key down, (event) => {
+    if (event.key === 'ArrowLeft' && playerpostion0 > 0) {
+        player position -= 15; // Move left
+    } else if (event.key === 'ArrowRight' && player position < window.innerWidth - 50) {
+        player position += 15; // Move right
+    }
+    player.style.left = playerPosition + 'px'; // Update player position
+});
+
+// Create cars every second
+setInterval(createCar, 1000);
+
+
