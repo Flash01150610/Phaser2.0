@@ -14,7 +14,6 @@
     </style>
 </head>
 <body>
-    Here’s a simple example of HTML and JavaScript for a basic game where a player runs across the street while avoiding cars, accompanied by music. This is a minimal setup to illustrate the concept:
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,13 +67,13 @@
         moveCar(car);
     }
 
-    function moveCar(car) {
+    function mover(car) {
         const speed = 2 + Math.random() * 3; // Random speed
         const interval = setInterval(() => {
             car.style.bottom = (parseInt(car.style.bottom) || 0) + speed + 'px';
             // Check for collision
             if (parseInt(car.style.bottom) > window.innerHeight) {
-                clearInterval(interval);
+                clear interval(interval);
                 car.remove();
             }
             if (collisionDetected(player, car)) {
@@ -84,7 +83,8 @@
         }, 20);
     }
 
-    function collisionDetected(player, car) {
+    function collisionDetected
+    (player, car) {
         const playerRect = player.getBoundingClientRect();
         const carRect = car.getBoundingClientRect();
         return !(
